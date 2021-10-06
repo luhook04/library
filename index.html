@@ -12,7 +12,8 @@
 <body>
 	<button id="addBook">Add Book</button>
 	<div id="pop-up" class="pop-up">
-		<form class="form">
+		<form id="form">
+			<span class="close">&times;</span>
 			<div class="text-input">
 				<input id="title" type="text" name="title" placeholder="Title">
 				<input id="author" type="text" name="author" placeholder="Author">
@@ -21,6 +22,7 @@
 			<div class="checkbox-input">
 				<label>Read: <input id="read" type="checkbox" name="read"/></label>
 			</div>				
+			<button type="submit" form="form" id="submit-button">Add New Book</button>
 		<form>
 	</div>
 	<div id="library-container"></div>
