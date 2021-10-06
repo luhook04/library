@@ -1,13 +1,40 @@
-// reference variables
+// create variables and references
 const addBtn = document.getElementById('addBook');
-const submitBtn = document.getElementById('submit-button');
+const form = document.getElementById('form');
+const inputTitle = document.getElementById('title');
+const inputAuthor = document.getElementById('author');
+const inputPages = document.getElementById('pages');
+const inputRead = document.getElementById('read');
+let myLibrary = [];
 
-// initialize array to store information
+// constructor function to make book objects
 function Book(title, author, pages, read) {
-  this.title = form.title.value;
-  this.author = form.author.value;
-  this.pages = form.author.value + 'pages';
-  this.read = form.read.checked;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
-const dog = new Book(title, author, pages, read);
+function addToMyLibrary() {
+  let title = inputTitle.value;
+  let author = inputAuthor.value;
+  let pages = inputPages.value;
+  let read;
+  if (inputRead.checked == true) {
+    read = 'Read';
+  }
+  else {
+    read = 'Not Read';
+  }
+  myLibrary.push(new Book(title, author, pages, read));
+  clearInput();
+}
+
+form.addEventListener('submit', addToMyLibrary);
+
+function clearInput() {
+  inputTitle.value = '';
+  inputAuthor.value = '';
+  inputPages.value = '';
+  inputRead.checked = false;
+}
