@@ -21,13 +21,7 @@ function addToMyLibrary() {
   let title = inputTitle.value;
   let author = inputAuthor.value;
   let pages = inputPages.value + ' pages';
-  let read;
-  if (inputRead.checked == true) {
-    read = 'Read';
-  }
-  else {
-    read = 'Not Read';
-  }
+  let read = inputRead.checked;
   myLibrary.push(new Book(title, author, pages, read));
   renderLibrary();
   clearInput();
@@ -82,7 +76,25 @@ const createBook = (item) => {
   bookDisplay.appendChild(authorDisplay);
   bookDisplay.appendChild(pagesDisplay);
   bookDisplay.appendChild(readDisplay);
+  if (item.read == false) {
+    readDisplay.textContent = 'Not Read';
+    readDisplay.style.backgroundColor = 'Red';
+  }
+  else {
+    readDisplay.textContent = 'Read';
+    readDisplay.style.backgroundColor = 'Green';
+  }
   bookDisplay.appendChild(removeBtn);
   bookDisplay.classList.add('book');
   library.appendChild(bookDisplay);
+
+  readDisplay.addEventListener('click', () => {
+    item.read = !item.read;
+    renderLibrary();
+  });
+
+  removeBtn.addEventListener('click', () => {
+    myLibrary.splice(myLibrary.indexOf(item), 1);
+    renderLibrary();
+  });
 };
