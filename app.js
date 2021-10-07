@@ -29,7 +29,7 @@ function addToMyLibrary() {
     read = 'Not Read';
   }
   myLibrary.push(new Book(title, author, pages, read));
-  displayLibrary();
+  renderLibrary();
   clearInput();
 }
 
@@ -41,7 +41,19 @@ function clearInput() {
   inputRead.checked = false;
 }
 
+// add event listener on form submit
 form.addEventListener('submit', addToMyLibrary);
+
+// removes the previous books divs and appends the entire new library array to the library
+const renderLibrary = () => {
+  const books = document.querySelectorAll('.book');
+  books.forEach((book) => {
+    document.querySelector('#library-container').removeChild(book);
+  });
+  for (let i = 0; i < myLibrary.length; i++) {
+    createBook(myLibrary[i]);
+  }
+};
 
 // create elements to form the book div
 const createBook = (item) => {
@@ -55,7 +67,7 @@ const createBook = (item) => {
 
   // Gives each display text content and a class
   titleDisplay.textContent = item.title;
-  titileDisplay.classList.add('title');
+  titleDisplay.classList.add('title');
   authorDisplay.textContent = item.author;
   authorDisplay.classList.add('author');
   pagesDisplay.textContent = item.pages;
@@ -72,14 +84,5 @@ const createBook = (item) => {
   bookDisplay.appendChild(readDisplay);
   bookDisplay.appendChild(removeBtn);
   bookDisplay.classList.add('book');
-  library.appendChild('book');
-};
-
-// display library
-const renderLibrary = () => {
-  const books = document.querySelectorAll('.books');
-  books.forEach((book) => {
-    document.querySelector('#library-container').removeChild(book);
-  });
-  for (let i = 0; i < myLibrary.length; i++) {}
+  library.appendChild(bookDisplay);
 };
