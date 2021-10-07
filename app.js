@@ -1,11 +1,24 @@
 // create variables and references
 const addBtn = document.getElementById('addBook');
+const closeBtn = document.querySelector('.close');
 const form = document.getElementById('form');
 const inputTitle = document.getElementById('title');
 const inputAuthor = document.getElementById('author');
 const inputPages = document.getElementById('pages');
 const inputRead = document.getElementById('read');
 let myLibrary = [];
+
+// opens the form when user clicks on button
+addBtn.onclick = function() {
+  document.querySelector('#pop-up').style.display = 'block';
+};
+
+const hideForm = () => {
+  document.querySelector('#pop-up').style.display = 'none';
+};
+
+// closes the form when user clicks on X
+closeBtn.addEventListener('click', hideForm);
 
 // constructor function to make book objects
 function Book(title, author, pages, read) {
@@ -37,6 +50,7 @@ function clearInput() {
 
 // add event listener on form submit
 form.addEventListener('submit', addToMyLibrary);
+form.addEventListener('submit', hideForm);
 
 // removes the previous books divs and appends the entire new library array to the library
 const renderLibrary = () => {
