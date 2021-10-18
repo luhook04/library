@@ -20,14 +20,15 @@ const hideForm = () => {
 // closes the form when user clicks on X
 closeBtn.addEventListener('click', hideForm);
 
-// constructor function to make book objects
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+// class constructer
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
-
 // takes the values from the form and inputs them into the constructor function
 // takes the return object and pushes it into the myLibrary array
 function addToMyLibrary() {
